@@ -145,9 +145,9 @@ class Compressor():
                 byte = 0
                 for z in range(7,-1,-1):
                     index = (y+z)*(width*rgba_size) + (x*rgba_size)
-                    avg = ((data[index]) + (data[index + 1]) + (data[index + 2]) / 3)
-                    # set the bit if pixel is turned on.
-                    if avg > self.threshold:
+                    # Convert to float for calculation
+                    avg = (float(data[index]) + float(data[index + 1]) + float(data[index + 2])) / 3.0
+                    if avg > float(self.threshold):
                         byte += np.power(2, z)
                 
                 bytestr = np.base_repr(byte,base=16)
